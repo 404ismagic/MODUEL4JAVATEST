@@ -31,3 +31,26 @@ var questions = [
     },
 
 ];
+var startDiv = document.getElementById("start-div");
+var questionsDiv  = document.getElementById("questions-div");
+var timerId;
+var timeEl = document.getElementById("time");
+var timeLeft = 120;
+var startBtnEl = document.getElementById("start-button");
+startBtnEl.onclick=startQuiz;
+
+function startQuiz() {
+    startDiv.setAttribute('class','hide');
+    questionsDiv.removeAttribute('class');
+    timerId = setInterval(oneSecHandler,  1000);
+    timeEl.textContent = timeLeft;
+    fetchQuestion();
+}
+function fetchQuestion() {
+    //tbd
+}
+function oneSecHandler() {
+    timeLeft--;
+    timeEl.textContent = timeLeft;
+    // rest of the function tbe ( to be done)
+}
