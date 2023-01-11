@@ -41,6 +41,7 @@ var timerId;
 var timeEl = document.getElementById("time");
 var timeLeft = 120;
 var startBtnEl = document.getElementById("start-button");
+choicesDiv.onclick = answerClick;
 startBtnEl.onclick=startQuiz;
 
 function startQuiz() {
@@ -74,4 +75,34 @@ function oneSecHandler() {
     timeLeft--;
     timeEl.textContent = timeLeft;
     // rest of the function tbe ( to be done)
+}
+
+function answerClick(event) {
+    var btn = event.target;
+
+    if(!btn.matches('.choice')) {
+        return;
+    }
+
+    if (btn.value != currentQuestion.corrAns) {
+        timeLeft -= 15;
+        if (timeLeft < 0) {
+            timeLeft = 0;
+        }
+        alert ("Wrong answeer, Press OK to  proceed");
+    
+    timeEl.textContent = timeLeft;
+    }
+    else {
+        alert("Right answer!! Press OK to proceed");
+    }
+    questionIndex++;
+    if (timeLeft <=0 || questionIndex === questions.length) {
+        endQuiz();
+    } else {
+        fetchQuestion();
+    }
+}
+function endQuiz() {
+    //tbd
 }
